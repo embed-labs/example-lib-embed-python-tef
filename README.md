@@ -1,6 +1,6 @@
 # example-lib-embed-python-pos
 
-Exemplo que demonstra o uso da `lib-embed` para o uso com o POS.
+Exemplo que demonstra o uso da `lib-embed` para o uso com o TEF.
 
 ## Instalação
 
@@ -9,13 +9,13 @@ Exemplo que demonstra o uso da `lib-embed` para o uso com o POS.
 
 Clonar o exemplo:
 ```
-git clone git@github.com:org-dev-embed/example-lib-embed-python-pos.git
+git clone git@github.com:org-dev-embed/example-lib-embed-python-tef.git
 ```
 
 acessar a pasta, modificar o arquivo .env.example, renomeando para .env e colocando os valores
 passados pelo time de suporte. Feito isso, executar o programa com python
 ```
-cd example-lib-embed-python-pos
+cd example-lib-embed-python-tef
 mv .env.example .env
 python3 embed_example.py
 ```

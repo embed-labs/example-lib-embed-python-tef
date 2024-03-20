@@ -3,14 +3,9 @@
 # --------------------------------------------------------------------------------------------
 # imports
 
-
-import time
-import json
-import io
-import os
-import base64
 from libembed import configurar, iniciar, processar, finalizar, obter_valor
-from PIL import Image, ImageTk
+import json
+import os
 import warnings
 from dotenv import load_dotenv
 from threading import Thread
