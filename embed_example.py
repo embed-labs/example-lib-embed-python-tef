@@ -217,6 +217,20 @@ class TefApp:
         )
         btns["btn_desfazer"].grid(column=2, row=3, columnspan=2, padx=5, pady=5, sticky=NSEW)
 
+        btns["btn_cancelar"] = Button(
+            self.value_frame,
+            text="Cancelar",
+            relief=RAISED,
+            bg=COLOR_BG_BUTTON,
+            fg=COLOR_FG_BUTTON,
+            disabledforeground=COLOR_FG_BUTTON_DISABLED,
+            font=SMALL_FONT_STYLE,
+            borderwidth=1,
+            width=17,
+            command=self.pagamento_cancelar,
+        )
+        btns["btn_cancelar"].grid(column=0, row=4, columnspan=4, padx=5, pady=5, sticky=NSEW)
+
         btns["btn_abortar"] = Button(
             self.operator_frame,
             text="Abortar",
@@ -229,7 +243,7 @@ class TefApp:
             width=17,
             command=self.abortar,
         )
-        btns["btn_abortar"].grid(column=1, row=4, columnspan=2, padx=5, pady=5, sticky=NSEW)
+        btns["btn_abortar"].grid(column=2, row=4, columnspan=2, padx=5, pady=5, sticky=NSEW)
         
         return btns
 
@@ -264,7 +278,7 @@ class TefApp:
     # =======================================
 
     # =======================================
-    # | ==============  PIX  ============== |
+    # | ==============  TEF  ============== |
     # =======================================
     def error(self):
         self.lbl_operator_text.set("aconteceu algum erro na operacao")
@@ -279,6 +293,7 @@ class TefApp:
         self.buttons["btn_debito"]["state"] = "active"
         self.buttons["btn_credito"]["state"] = "active"
         self.buttons["btn_abortar"]["state"] = "active"
+        self.buttons["btn_cancelar"]["state"] = "active"
         self.running = True
         self.process_thread = Thread(target=self.debito)
         self.process_thread.start()
@@ -288,6 +303,7 @@ class TefApp:
         self.buttons["btn_debito"]["state"] = "active"
         self.buttons["btn_credito"]["state"] = "active"
         self.buttons["btn_abortar"]["state"] = "active"
+        self.buttons["btn_cancelar"]["state"] = "active"
         self.running = True
         self.process_thread = Thread(target=self.credito)
         self.process_thread.start()
@@ -297,6 +313,7 @@ class TefApp:
         self.buttons["btn_debito"]["state"] = "active"
         self.buttons["btn_credito"]["state"] = "active"
         self.buttons["btn_abortar"]["state"] = "active"
+        self.buttons["btn_cancelar"]["state"] = "active"
         self.lbl_operator_text.set("operação abortada")
         self.running = True
         self.process_thread = Thread(target=self.e_abortar)
@@ -305,7 +322,9 @@ class TefApp:
     def confirmar(self):
         self.buttons["btn_config"]["state"] = "active"
         self.buttons["btn_debito"]["state"] = "active"
+        self.buttons["btn_credito"]["state"] = "active"
         self.buttons["btn_abortar"]["state"] = "active"
+        self.buttons["btn_cancelar"]["state"] = "active"
         self.lbl_operator_text.set("operação abortada")
         self.running = True
         self.process_thread = Thread(target=self.e_finalizar("1"))
@@ -314,10 +333,23 @@ class TefApp:
     def desfazer(self):
         self.buttons["btn_config"]["state"] = "active"
         self.buttons["btn_debito"]["state"] = "active"
+        self.buttons["btn_credito"]["state"] = "active"
         self.buttons["btn_abortar"]["state"] = "active"
-        self.lbl_operator_text.set("operação abortada")
+        self.buttons["btn_cancelar"]["state"] = "active"
+        self.lbl_operator_text.set("operação abortar")
         self.running = True
         self.process_thread = Thread(target=self.e_finalizar("0"))
+        self.process_thread.start()
+
+    def pagamento_cancelar(self):
+        self.buttons["btn_config"]["state"] = "active"
+        self.buttons["btn_debito"]["state"] = "active"
+        self.buttons["btn_credito"]["state"] = "active"
+        self.buttons["btn_abortar"]["state"] = "active"
+        self.buttons["btn_cancelar"]["state"] = "active"
+        self.lbl_operator_text.set("operação cancelar")
+        self.running = True
+        self.process_thread = Thread(target=self.cancelar())
         self.process_thread.start()
 
     def debito(self):
@@ -343,6 +375,23 @@ class TefApp:
         if "Sucesso" not in self.e_iniciar():
             return self.error()
         if "Sucesso" not in self.e_credito():
+            return self.error()
+        while self.running:
+            result = self.e_status() 
+            self.lbl_operator_text.set(f"Result: {result}")
+            self.root.update()
+            if "-1" in result:
+                self.error()
+                break
+            if "0" in result:
+                break
+
+        self.root.update()
+
+    def cancelar(self):
+        if "Sucesso" not in self.e_iniciar():
+            return self.error()
+        if "Sucesso" not in self.e_cancelar():
             return self.error()
         while self.running:
             result = self.e_status() 
@@ -427,7 +476,7 @@ class TefApp:
         return res
 
     def e_debito(self):
-        self.lbl_operator_text.set("pedindo transacao para 1 real")
+        self.lbl_operator_text.set("transacao débito de 19,00 reais")
 
         OPERACAO    = 'debito'      
         VALOR       = "1900"        
@@ -465,7 +514,7 @@ class TefApp:
         return message
 
     def e_credito(self):
-        self.lbl_operator_text.set("pedindo transacao para 100 reais")
+        self.lbl_operator_text.set("transacao crédito de 250,00 reais")
 
         OPERACAO        = 'credito'     
         VALOR           = "25000"       
@@ -475,20 +524,20 @@ class TefApp:
         # DESCOMENTE UMA DAS OPCOES PARA TESTAR: JSON OU META PARAMETROS
 
         # JSON 
-        input_data = {
-            "processar": {
-                "operacao": OPERACAO,           # credito 
-                "valor": VALOR,                 # em centavos
-                "parcelas": PARCELAS,           # 1 a 99
-                "financiamento": FINANCIAMENTO, # 0 - a vista; 1 - estabelecimento; 2 - administradora
-            }
-        }
-        input_json = json.dumps(input_data)
-        res = processar(input_json)
+        # input_data = {
+        #     "processar": {
+        #         "operacao": OPERACAO,           # credito 
+        #         "valor": VALOR,                 # em centavos
+        #         "parcelas": PARCELAS,           # 1 a 99
+        #         "financiamento": FINANCIAMENTO, # 0 - a vista; 1 - estabelecimento; 2 - administradora
+        #     }
+        # }
+        # input_json = json.dumps(input_data)
+        # res = processar(input_json)
 
         # META PARAMETROS
-        # input_data = f"{OPERACAO};{VALOR};{PARCELAS};{FINANCIAMENTO}"
-        # res = processar(input_data)
+        input_data = f"{OPERACAO};{VALOR};{PARCELAS};{FINANCIAMENTO}"
+        res = processar(input_data)
 
         self.write_logs("PROCESSAR")
         self.write_logs(res)
@@ -556,6 +605,48 @@ class TefApp:
 
         result = obter_valor(res, "resultato.status_code")
         return result
+    
+    def e_cancelar(self): 
+        self.lbl_operator_text.set("cancelando transação")
+
+        OPERACAO        = 'cancelar'     
+        VALOR           = "4500"       
+        DATA            = "20032024"           
+        NSU             = "000000060"           
+
+        # DESCOMENTE UMA DAS OPCOES PARA TESTAR: JSON OU META PARAMETROS
+
+        # JSON 
+        # input_data = {
+        #     "processar": {
+        #         "operacao": OPERACAO,           # credito 
+        #         "valor": VALOR,                 # em centavos
+        #         "data": DATA,                   # DDMMAAAA - 
+        #         "nsu": NSU,                     # igual está no comprovante recebido com 9 caracteres
+        #     }
+        # }
+        # input_json = json.dumps(input_data)
+        # res = processar(input_json)
+
+        # META PARAMETROS
+        input_data = f"{OPERACAO};{VALOR};{DATA};{NSU}"
+        res = processar(input_data)
+
+        self.write_logs("PROCESSAR")
+        self.write_logs(res)
+        
+        status_code = obter_valor(res, "resultado.status_code")
+        message = obter_valor(res, "resultado.status_message")
+
+        if status_code == "1":
+            self.lbl_operator_text.set(message)
+            self.root.update()
+        else:
+            print("error in response ")
+            self.lbl_operator_text.set("Ocorreu algum erro")
+
+        message = obter_valor(res, "mensagem")
+        return message
 
     def e_finalizar(self, confirmar):
         self.lbl_operator_text.set("finalizando operacao")
