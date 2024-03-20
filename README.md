@@ -1,4 +1,4 @@
-# example-lib-embed-python-pos
+# example-lib-embed-python-tef
 
 Exemplo que demonstra o uso da `lib-embed` para o uso com o TEF.
 
