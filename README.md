@@ -31,9 +31,10 @@ python3 embed_example.py
 
 ## API
 
-### Fluxo
+### Fluxos
 Vamos definir o fluxo que deve ser seguido para que sua implementação seja realizada seguindo as melhores práticas no uso da nossa API
 
+#### Geral
 ```mermaid
 graph TD;
     A(1 - embed_configurar) -->B(2 - embed_iniciar);    
@@ -41,6 +42,29 @@ graph TD;
     C --> D{4 - embed_processar};
     D --> |processando|D;
     D --> E(5 - embed_finalizar);
+```
+
+### Transações
+```mermaid
+flowchart TD;
+    subgraph Débito;
+    deb1(embed_iniciar\ninput = tef) -- result.status_code ==  0 --> deb2(embed_processar\ninput = debito;1);
+    deb2 -- result.status_code ==  0 --> deb3(embed_processar\ninput = get_status);
+    deb3 -- result.status_code ==  1 --> deb3;
+    deb3 -- result.status_code ==  0 --> deb4(embed_finalizar\ninput = confirmar;1);
+    end;
+    subgraph Crédito;
+    cred1(embed_iniciar\ninput = tef) -- result.status_code ==  0 --> cred2(embed_processar\ninput = credito;10000;1;0);
+    cred2 -- result.status_code ==  0 --> cred3(embed_processar\ninput = get_status);
+    cred3 -- result.status_code ==  1 --> cred3;
+    cred3 -- result.status_code ==  0 --> cred4(embed_finalizar\ninput = confirmar;1);
+    end;
+    subgraph Cancelar;
+    canc1(embed_iniciar\ninput = tef) -- result.status_code ==  0 --> canc2(embed_processar\ninput = cancelar;10000;22032024;000000078);
+    canc2 -- result.status_code ==  0 --> canc3(embed_processar\ninput = get_status);
+    canc3 -- result.status_code ==  1 --> canc3;
+    canc3 -- result.status_code ==  0 --> canc4(embed_finalizar\ninput = confirmar;1);
+    end;
 ```
 
 ### Métodos
