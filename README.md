@@ -91,7 +91,7 @@ Aqui estão as definições para _input_ e _output_ para este método
 
 Pode ser parametrizado de duas maneiras:
 
-1. Json
+1. JSON
 ```json
 {
     "configs": {
@@ -146,7 +146,7 @@ Aqui estão as definições para _input_ e _output_ para este método.
 
 Pode ser parametrizado de duas maneiras:
 
-1. Json
+1. JSON
 ```json
 {
     "iniciar": {
@@ -161,7 +161,7 @@ Pode ser parametrizado de duas maneiras:
 
 ###### 2.2.2. Output
 
-O retorno para este método consiste em um Json (sempre), no seguinte formato:
+O retorno para este método consiste em um JSON (sempre), no seguinte formato:
 
 ```json
 {
@@ -190,7 +190,7 @@ Aqui estão as definições para _input_ e _output_ para este método.
 
 ###### 3.2.1. Input
 
-Temos cinto modalidades de processamento que podem ser realizadas:
+Temos cinco modalidades de processamento que podem ser realizadas:
 1. crédito
 2. débito
 3. cancelar
@@ -199,7 +199,7 @@ Temos cinto modalidades de processamento que podem ser realizadas:
 
 Estas modalidades podem ser parametrizadas de duas formas:
 
-1. Json
+1. JSON
 ```json
 // Crédito
 {
@@ -254,7 +254,7 @@ Estas modalidades podem ser parametrizadas de duas formas:
 ```
 ###### 3.2.2. Output
 
-O retorno para este método consiste em um Json (sempre), no seguinte formato:
+O retorno para este método consiste em um JSON (sempre), no seguinte formato:
 
 ```json
 {
@@ -285,7 +285,7 @@ Aqui estão as definições para os _inputs_ e _output_ para este método.
 
 Pode ser parametrizado de duas maneiras:
 
-1. Json
+1. JSON
 ```json
 {
     "finalizar": {
@@ -305,7 +305,7 @@ Pode ser parametrizado de duas maneiras:
 
 #### 5. Obter Valor
 
-Este método responsável por buscar um valor contido em uma chave ou objeto de um json válido. 
+Este método responsável por buscar um valor contido em uma chave ou objeto de um JSON válido. 
 
 ##### 5.1. Assinatura
 
@@ -319,7 +319,7 @@ Aqui estão as definições para os _inputs_ e _output_ para este método.
 
 ###### 5.2.1. Input
 
-Deve ser informado sempre um String com conteúdo Json.
+Deve ser informado sempre um String com conteúdo JSON.
 
 ```json
 // Json
@@ -348,13 +348,13 @@ Será um String com valor informado em _key_ se conter em _json_
 "value25"
 ```
 
-### Retornos
+### Retornos 
 
-Os possíveis retornos para estes métodos são:
+Os possíveis retornos para os métodos utilizando o produto TEF conforme as tabelas abaixo
 
 | codigo | mensagem |
-| --- | ----------- |
-| 0 | Sucesso |
+| - | - |
+| 0 | Sucesso | 
 | -1 | Erro |
 | -2 | Deserialize |
 | -3 | ProviderError |
@@ -363,3 +363,28 @@ Os possíveis retornos para estes métodos são:
 | -33 | TefInvalidOperation |
 | -34 | TefInputBadFormat |
 | -34 | TefTransactionError |
+
+| status_code | status_message |
+| - | - |
+| -1 | erro |
+| 0 | finalizado |
+| 1 | processando |
+
+### Dados da Transação
+
+Ao finalizar com sucesso a propriedade _result_ além de retornar _status_code_ e _status_message_, contém outros dados da transação conforme a tabela abaixo
+
+| Chave | Descrição |
+| - | - |
+| tipo_cartao | Modalidade de pagamento (débito ou crédito) |
+| valor | Valor do pagamento realizado em centavos |
+| parcelas | Quantidade de parcelas (para débito sempre o valor será 1) |
+| financiamento | Tipo de financiamento do pagamento (à vista, estabelecimento ou administradora) |
+| data_hora | Data/hora do pagamento realizado|
+| bandeira | Bandeira do cartão que realizou o pagamento |
+| aid | AID do cartão utilizado |
+| nsu | Número sequencial único (utilizado para realizar o cancelamento) |
+| via_loja | Cupom para realização de impressão com os dados para estabelecimento |
+| via_cliente | Cupom para realização de impressão com os dados para cliente |
+| numero_cartao | Número do cartão utilizado no pagamento com máscara |
+| codigo_autorizacao | Código da autorização do pagamento |
