@@ -64,6 +64,7 @@ flowchart TD;
 ```
 3. Cancelar
 ```mermaid
+flowchart TD;
     canc1(embed_iniciar\ninput = tef) -- result.status_code ==  0 --> canc2(embed_processar\ninput = cancelar;10000;22032024;000000078);
     canc2 -- result.status_code ==  0 --> canc3(embed_processar\ninput = get_status);
     canc3 -- result.status_code ==  1 --> canc3;
