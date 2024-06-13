@@ -413,7 +413,6 @@ class TefApp:
         PRODUTO = "tef"                         
         TIMEOUT = os.getenv('TIMEOUT')          
         SUB_PRODUTO = os.getenv('SUB_PRODUTO')  
-        SENHA_ADM = os.getenv('SENHA_ADM')
         TOKEN_AUTORIZACAO = os.getenv('TOKEN_AUTORIZACAO')  # token de acesso
         CODIGO_ATIVACAO = os.getenv('CODIGO_ATIVACAO')
         NOME_APP = os.getenv('APP_NOME')
@@ -429,7 +428,6 @@ class TefApp:
                 "sub_produto": SUB_PRODUTO,                                       
                 "infos": {
                     "timeout": TIMEOUT,
-                    "senha_adm": SENHA_ADM,
                     "codigo_ativacao": CODIGO_ATIVACAO,
                     "token_autorizacao": TOKEN_AUTORIZACAO,
                     "nome_app": NOME_APP,
@@ -442,7 +440,7 @@ class TefApp:
         res = configurar(input_json)
 
         # META PARAMETROS
-        # input_data = f"{PRODUTO};{SUB_PRODUTO};{TIMEOUT};{SENHA_ADM};{CODIGO_ATIVACAO};{TOKEN_AUTORIZACAO};{NOME_APP};{VERSAO_APP};{TEXTO_PINPAD}"
+        # input_data = f"{PRODUTO};{SUB_PRODUTO};{TIMEOUT};{CODIGO_ATIVACAO};{TOKEN_AUTORIZACAO};{NOME_APP};{VERSAO_APP};{TEXTO_PINPAD}"
         # res = configurar(input_data)
 
         self.write_logs("CONFIGURAR")
