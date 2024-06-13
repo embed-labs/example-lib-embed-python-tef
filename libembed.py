@@ -9,7 +9,6 @@ else:
     extension = '.so'
 
 if platform.architecture()[0] == "64bit":
-    # name = 'lib-embed-x64'
     name = 'lib-embed-x64'
 else:
     name = 'lib-embed-x86'

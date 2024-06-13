@@ -514,10 +514,10 @@ class TefApp:
         return message
 
     def e_credito(self):
-        self.lbl_operator_text.set("transacao crédito de 250,00 reais")
+        self.lbl_operator_text.set("transacao crédito de 1,00 reais")
 
         OPERACAO        = 'credito'     
-        VALOR           = "25000"       
+        VALOR           = "100"       
         PARCELAS        = "1"           
         FINANCIAMENTO   = "0"           
 
