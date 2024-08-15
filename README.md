@@ -70,6 +70,14 @@ flowchart TD;
     canc3 -- result.status_code ==  1 --> canc3;
     canc3 -- result.status_code ==  0 --> canc4(embed_finalizar\ninput = confirmar;1);
 ```
+4. Reimprimir
+```mermaid
+flowchart TD;
+    rept1(embed_iniciar\ninput = tef) -- result.status_code ==  0 --> rept2(embed_processar\ninput = reimprimir;10000;22032024;000000078);
+    rept2 -- result.status_code ==  0 --> rept3(embed_processar\ninput = get_status);
+    rept3 -- result.status_code ==  1 --> rept3;
+    rept3 -- result.status_code ==  0
+```
 
 ### Métodos
 
@@ -194,8 +202,9 @@ Temos cinco modalidades de processamento que podem ser realizadas:
 1. crédito
 2. débito
 3. cancelar
-4. abortar (transação atual)
-5. get_status (transação atual)
+4. reimprimir
+5. abortar (transação atual)
+6. get_status (transação atual)
 
 Estas modalidades podem ser parametrizadas de duas formas:
 
@@ -226,6 +235,15 @@ Estas modalidades podem ser parametrizadas de duas formas:
         "nsu": "",                      // igual está no comprovante recebido com 9 caracteres
     }
 }
+// Reimprimir
+{
+    "processar": {
+        "operacao": "reimprimir",       // reimprimir 
+        "valor": "",                    // em centavos (se R$ 1,00 logo 100)
+        "data": "",                     // no formato DDMMAAAA  
+        "nsu": "",                      // igual está no comprovante recebido com 9 caracteres
+    }
+}
 // Abortar 
 {
     "processar": {
@@ -247,6 +265,8 @@ Estas modalidades podem ser parametrizadas de duas formas:
 "debito;valor"
 // Cancelar
 "cancelar;valor;data;nsu"
+// Reimprimir
+"reimprimir;valor;data;nsu"
 // Abortar 
 "abortar"
 // Get Status
