@@ -107,7 +107,6 @@ Pode ser parametrizado de duas maneiras:
         "sub_produto": "1",                                       
         "infos": {
             "timeout": "300",
-            "senha_adm": "",            // somente para linux
             "codigo_ativacao": "",      // gerado pelo time de integração
             "token_autorizacao": "",    // gerado pelo time de integração
             "nome_app": "",
@@ -119,10 +118,7 @@ Pode ser parametrizado de duas maneiras:
 ```
 2. Metaparâmetro (obedecendo a sequência)
 ```c
-// windows
-"tef;1;300;;codigo_ativacao;token_autorizacao;nome_app;versao_app;texto_pinpad"
-// linux
-"tef;1;300;senha_adm;codigo_ativacao;token_autorizacao;nome_app;versao_app;texto_pinpad"
+"tef;1;300;codigo_ativacao;token_autorizacao;nome_app;versao_app;texto_pinpad"
 ```
 
 ###### 1.2.2. Output
@@ -378,6 +374,7 @@ Os possíveis retornos para os métodos utilizando o produto TEF conforme as tab
 | -1 | Erro |
 | -2 | Deserialize |
 | -3 | ProviderError |
+| -4 | FileNotFound |
 | -31 | TefError |
 | -32 | TefMissingParameter |
 | -33 | TefInvalidOperation |
