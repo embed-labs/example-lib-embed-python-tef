@@ -76,7 +76,7 @@ flowchart TD;
     rept1(embed_iniciar\ninput = tef) -- result.status_code ==  0 --> rept2(embed_processar\ninput = reimprimir;10000;22032024;000000078);
     rept2 -- result.status_code ==  0 --> rept3(embed_processar\ninput = get_status);
     rept3 -- result.status_code ==  1 --> rept3;
-    rept3 -- result.status_code ==  0
+    rept3 -- result.status_code ==  0 --> rept4(embed_finalizar);
 ```
 
 ### Métodos
