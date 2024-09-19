@@ -34,11 +34,11 @@ python3 embed_example.py
 ### Fluxos
 Vamos definir o fluxo que deve ser seguido para que sua implementação seja realizada seguindo as melhores práticas no uso da nossa API
 
-![fluxo-geral](https://github.com/user-attachments/assets/5293c6ca-24c3-45a8-9d82-f808a6748ec5)
-![fluxo-credito](https://github.com/user-attachments/assets/2143513b-1ba3-4314-8227-0f91ca70d28b)
-![fluxo-debito](https://github.com/user-attachments/assets/4b9f2f48-9d7f-4217-9cbf-a3dcfc0e13cc)
-![fluxo-cancelar](https://github.com/user-attachments/assets/3521fde4-898c-4e35-9f80-ce041bedef4e)
-![fluxo-reimprimir](https://github.com/user-attachments/assets/5a3114a5-2b4c-468f-a725-45fed285dbf0)
+![geral](https://github.com/user-attachments/assets/16ca412b-4104-453f-aed8-c69d92c445fd)
+![tef-credito](https://github.com/user-attachments/assets/26bec95a-4059-46a0-ab3d-f5d84ec36dba)
+![tef-debito](https://github.com/user-attachments/assets/98c90120-893e-4511-9a86-5795b9a18116)
+![tef-cancelar](https://github.com/user-attachments/assets/969b0d51-05f8-42aa-9b8f-97f6e5e93c39)
+![tef-reimprimir](https://github.com/user-attachments/assets/aafa1d13-64e4-46dc-9912-f7626d5dfb5d)
 
 ### Métodos
 
