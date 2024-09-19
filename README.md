@@ -36,7 +36,7 @@ Vamos definir o fluxo que deve ser seguido para que sua implementação seja rea
 
 ![fluxo-geral](https://github.com/user-attachments/assets/5293c6ca-24c3-45a8-9d82-f808a6748ec5)
 ![fluxo-credito](https://github.com/user-attachments/assets/2143513b-1ba3-4314-8227-0f91ca70d28b)
-![fluxo-debito](https://github.com/user-attachments/assets/e3b9fac3-bb18-473a-9b20-392b75ddf65d)
+![fluxo-debito](https://github.com/user-attachments/assets/4b9f2f48-9d7f-4217-9cbf-a3dcfc0e13cc)
 ![fluxo-cancelar](https://github.com/user-attachments/assets/3521fde4-898c-4e35-9f80-ce041bedef4e)
 ![fluxo-reimprimir](https://github.com/user-attachments/assets/5a3114a5-2b4c-468f-a725-45fed285dbf0)
 
