@@ -1,4 +1,4 @@
-# example-lib-embed-python-tef
+![embed](https://github.com/user-attachments/assets/f99bf311-dca1-45c0-a7ee-05036b452afc)
 
 Exemplo demonstrativo para o uso da `lib-embed` no transações com TEF.
 
@@ -34,50 +34,11 @@ python3 embed_example.py
 ### Fluxos
 Vamos definir o fluxo que deve ser seguido para que sua implementação seja realizada seguindo as melhores práticas no uso da nossa API
 
-#### Geral
-```mermaid
-graph TD;
-    A(1 - embed_configurar) -->B(2 - embed_iniciar);    
-    B --> C(3 - embed_processar);
-    C --> D{4 - embed_processar};
-    D --> |processando|D;
-    D --> E(5 - embed_finalizar);
-```
-
-#### Transações
-
-1. Crédito
-```mermaid
-flowchart TD;
-    cred1(embed_iniciar\ninput = tef) -- result.status_code ==  0 --> cred2(embed_processar\ninput = credito;10000;1;0);
-    cred2 -- result.status_code ==  0 --> cred3(embed_processar\ninput = get_status);
-    cred3 -- result.status_code ==  1 --> cred3;
-    cred3 -- result.status_code ==  0 --> cred4(embed_finalizar\ninput = confirmar;1);
-```
-2. Débito
-```mermaid
-flowchart TD;
-    deb1(embed_iniciar\ninput = tef) -- result.status_code ==  0 --> deb2(embed_processar\ninput = debito;1);
-    deb2 -- result.status_code ==  0 --> deb3(embed_processar\ninput = get_status);
-    deb3 -- result.status_code ==  1 --> deb3;
-    deb3 -- result.status_code ==  0 --> deb4(embed_finalizar\ninput = confirmar;1);
-```
-3. Cancelar
-```mermaid
-flowchart TD;
-    canc1(embed_iniciar\ninput = tef) -- result.status_code ==  0 --> canc2(embed_processar\ninput = cancelar;10000;22032024;000000078);
-    canc2 -- result.status_code ==  0 --> canc3(embed_processar\ninput = get_status);
-    canc3 -- result.status_code ==  1 --> canc3;
-    canc3 -- result.status_code ==  0 --> canc4(embed_finalizar\ninput = confirmar;1);
-```
-4. Reimprimir
-```mermaid
-flowchart TD;
-    rept1(embed_iniciar\ninput = tef) -- result.status_code ==  0 --> rept2(embed_processar\ninput = reimprimir;10000;22032024;000000078);
-    rept2 -- result.status_code ==  0 --> rept3(embed_processar\ninput = get_status);
-    rept3 -- result.status_code ==  1 --> rept3;
-    rept3 -- result.status_code ==  0 --> rept4(embed_finalizar);
-```
+![fluxo-geral](https://github.com/user-attachments/assets/5293c6ca-24c3-45a8-9d82-f808a6748ec5)
+![fluxo-credito](https://github.com/user-attachments/assets/2143513b-1ba3-4314-8227-0f91ca70d28b)
+![fluxo-debito](https://github.com/user-attachments/assets/e3b9fac3-bb18-473a-9b20-392b75ddf65d)
+![fluxo-cancelar](https://github.com/user-attachments/assets/3521fde4-898c-4e35-9f80-ce041bedef4e)
+![fluxo-reimprimir](https://github.com/user-attachments/assets/5a3114a5-2b4c-468f-a725-45fed285dbf0)
 
 ### Métodos
 
