@@ -11,7 +11,7 @@ Exemplo demonstrativo para o uso da `lib-embed` no transações com TEF.
 ### Clonar
 
 ```git
-git clone git@github.com:org-dev-embed/example-lib-embed-python-tef.git
+git clone git@github.com:embed-labs/example-lib-embed-python-tef.git
 ```
 
 ### Configurações 
