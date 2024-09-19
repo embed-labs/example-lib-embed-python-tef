@@ -8,6 +8,16 @@ Exemplo demonstrativo para o uso da `lib-embed` no transações com TEF.
 
 É necessário ter o Python 3 instalado em sua máquina.
 
+#### Dependências 
+- python3-tk
+- python3-pip
+- Pillow (via pip)
+- python-dotenv (via pip)
+
+### Equipamentos
+
+É obrigatório ter um pinpad para realizar seus testes.
+
 ### Clonar
 
 ```git
