@@ -16,7 +16,7 @@ Exemplo demonstrativo para o uso da `lib-embed` no transações com TEF.
 
 ### Equipamentos
 
-É obrigatório ter um pinpad para realizar seus testes.
+É obrigatório ter um `Pinpad (USB ou Bluetooth)` para realizar seus testes.
 
 ### Clonar
 
@@ -44,11 +44,11 @@ python3 embed_example.py
 ### Fluxos
 Vamos definir o fluxo que deve ser seguido para que sua implementação seja realizada seguindo as melhores práticas no uso da nossa API
 
-![geral](https://github.com/user-attachments/assets/16ca412b-4104-453f-aed8-c69d92c445fd)
-![tef-credito](https://github.com/user-attachments/assets/26bec95a-4059-46a0-ab3d-f5d84ec36dba)
-![tef-debito](https://github.com/user-attachments/assets/98c90120-893e-4511-9a86-5795b9a18116)
-![tef-cancelar](https://github.com/user-attachments/assets/969b0d51-05f8-42aa-9b8f-97f6e5e93c39)
-![tef-reimprimir](https://github.com/user-attachments/assets/aafa1d13-64e4-46dc-9912-f7626d5dfb5d)
+![fluxo-geral](https://github.com/user-attachments/assets/2f05fc07-dff0-4b20-9ecf-9dd392ffd577)
+![tef-credito](https://github.com/user-attachments/assets/24362ed1-19bd-44ed-9f25-da705a49938e)
+![tef-debito](https://github.com/user-attachments/assets/a2fdb72f-e615-4ca7-96cc-129a2e8dbaf1)
+![tef-cancelar](https://github.com/user-attachments/assets/aec88c09-898a-42f2-9abe-5b8c5bb30feb)
+![tef-reimprimir](https://github.com/user-attachments/assets/89576f7a-6b59-4e6e-b141-928c3297cae1)
 
 ### Métodos
 
